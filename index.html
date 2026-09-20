@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Rosetta Stone — Manual & Feedback</title>
+<style>
+  :root{
+    --jacket:#111a28;
+    --paper:#FBF9F4;
+    --ink:#1e293b;
+    --muted:#64748b;
+    --border:rgba(17,26,40,0.14);
+    --acc:#e89450;   /* accelerationist */
+    --saf:#7da3d6;   /* safetyist */
+    --skp:#a888c8;   /* skeptic */
+    --brand:#A51C30; /* Berkman crimson */
+    --radius:10px;
+    --font-ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --font-serif:Georgia,'Times New Roman',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.55}
+  a{color:var(--brand)}
+  header{background:var(--jacket);color:#fff;padding:28px 24px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  header h1{font-family:var(--font-serif);font-size:30px;margin:6px 0 4px}
+  header p{color:rgba(255,255,255,.75);font-family:var(--font-serif);font-size:16px}
+  .dots{margin-top:14px;display:flex;gap:8px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%}
+  nav.tabs{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--border);display:flex}
+  nav.tabs button{flex:1;padding:14px;border:0;background:none;font-family:var(--font-ui);font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent}
+  nav.tabs button.active{color:var(--brand);border-bottom-color:var(--brand)}
+  main{padding:28px 0 80px}
+  section.view{display:none}
+  section.view.active{display:block}
+  h2{font-family:var(--font-serif);font-size:23px;margin:28px 0 10px}
+  h2:first-child{margin-top:0}
+  h3{font-size:16px;margin:20px 0 6px}
+  p,li{font-size:15px}
+  ul,ol{margin:8px 0 8px 22px}
+  li{margin:4px 0}
+  .callout{border-left:4px solid var(--brand);background:#fff;padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;margin:16px 0}
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+  th{background:#f1f0ea;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  code{background:#eee;padding:1px 5px;border-radius:4px;font-size:13px}
+  /* form */
+  label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px}
+  .hint{font-weight:400;color:var(--muted);font-size:12.5px;margin-bottom:6px}
+  input[type=text],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:var(--font-ui);font-size:14px;background:#fff;color:var(--ink)}
+  textarea{min-height:80px;resize:vertical}
+  .scale{display:flex;gap:6px;flex-wrap:wrap}
+  .scale label{display:flex;align-items:center;gap:6px;font-weight:400;margin:0;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:#fff}
+  .scale input{accent-color:var(--brand)}
+  .friction{border:1px dashed var(--border);border-radius:8px;padding:12px;margin:10px 0;position:relative}
+  .friction .rm{position:absolute;top:8px;right:8px;background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;line-height:1}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  button.action{background:var(--brand);color:#fff;border:0;padding:11px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer}
+  button.ghost{background:#fff;color:var(--ink);border:1px solid var(--border)}
+  .saved{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .verdict-pill{display:inline-flex;gap:6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px}
+  .kbd{font-family:var(--font-serif);font-style:italic;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">AI Triad Research · Field Guide</div>
+    <h1>AI Rosetta Stone</h1>
+    <p>User manual &amp; structured feedback — three schools of thought, one map of the argument.</p>
+    <div class="dots">
+      <span class="dot" style="background:var(--acc)"></span>
+      <span class="dot" style="background:var(--saf)"></span>
+      <span class="dot" style="background:var(--skp)"></span>
+      <span style="font-size:12px;color:rgba(255,255,255,.55);margin-left:6px">Accelerationist · Safetyist · Skeptic</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button data-tab="manual" class="active">📖 User Manual</button>
+  <button data-tab="feedback">📝 Give Feedback</button>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= MANUAL ================= -->
+<section id="manual" class="view active">
+
+  <h2>1. What this tool is (and is not)</h2>
+  <p>The AI Rosetta Stone is <strong>epistemic infrastructure for multi-perspective AI-policy analysis</strong>. It is <em>not</em> a chatbot and <em>not</em> a search engine.</p>
+  <p>It does three things:</p>
+  <ol>
+    <li>Holds <strong>three fixed worldviews</strong> — accelerationist, safetyist, skeptic — as structured <strong>BDI taxonomies</strong> (every node tagged <strong>B</strong>elief, <strong>D</strong>esire, or <strong>I</strong>ntention).</li>
+    <li>Runs <strong>adversarial debates</strong> between those perspectives under formal rules, with a procedural moderator.</li>
+    <li>Distills results into <strong>cruxes</strong> — the points whose resolution would move the most minds.</li>
+  </ol>
+  <div class="callout">
+    <strong>The core promise:</strong> its output is <em>structural, not veridical</em>. It shows <strong>where</strong> disagreement lives and <strong>what would resolve it</strong> — not <strong>what is true</strong>. A claim can dominate the argument graph and still be false. Keep this in mind; it changes how you read everything the tool produces.
+  </div>
+
+  <h2>2. Who it's for</h2>
+  <ul>
+    <li>Policy analysts, researchers, and strategists working through <strong>contested, normative AI questions</strong>.</li>
+    <li>People who want to <strong>map an argument</strong> and find its blind spots — not look up facts.</li>
+  </ul>
+  <p>If your question is "what is X?", this is the wrong instrument. If it's "should we do X, and what would change my mind?", it's the right one.</p>
+
+  <h2>3. Getting started</h2>
+  <table>
+    <tr><th>Step</th><th>What to do</th></tr>
+    <tr><td>1</td><td>Open the tool. You'll land on a sign-in page.</td></tr>
+    <tr><td>2</td><td>Choose <strong>"Browse without an account"</strong> to start in <strong>read-only</strong> mode — enough to explore the full taxonomy and debate archive.</td></tr>
+    <tr><td>3</td><td><strong>Sign in</strong> (GitHub / Google / Microsoft) only when you need to <strong>run a debate</strong> or <strong>propose an edit</strong>.</td></tr>
+  </table>
+  <div class="card">
+    <h3 style="margin-top:0">Capabilities by mode</h3>
+    <ul style="margin-bottom:0">
+      <li><strong>Anonymous:</strong> read-only. Browse taxonomy, debates, cruxes. No AI runs, no writes.</li>
+      <li><strong>Signed in:</strong> run debates and submit taxonomy edits via the review / PR flow.</li>
+    </ul>
+  </div>
+
+  <h2>4. How to use it well</h2>
+  <h3>Come with a genuine policy tension, not a fact question</h3>
+  <p>It shines on contested normative questions. Vague or factual prompts produce activity without insight.</p>
+  <h3>Read the taxonomy first, debates second</h3>
+  <p>The three-camp taxonomy is the map. See how each camp frames the same situation — e.g. "AI governance" as an <em>innovation bottleneck</em> (acc.), <em>essential gating</em> (saf.), or a <em>capture risk</em> (skp.). That contrast is often the whole insight.</p>
+  <h3>Treat cruxes as the payoff</h3>
+  <p>The most valuable artifact isn't the transcript — it's the crux. Use it as a "consult the real world here" pointer.</p>
+  <h3>Never read "won the argument" as "true"</h3>
+  <p>Survival in the graph ≠ truth. Use the tool to structure thinking and surface blind spots, not to settle debates.</p>
+  <h3>Mind the register</h3>
+  <p>When a disagreement is <em>definitional</em> (e.g. "accountability (market)" vs "(institutional)" vs "(algorithmic)"), that's a feature. Lean into disambiguating.</p>
+
+  <h2>5. How to interact with it</h2>
+  <ul>
+    <li><strong>Phrase inputs as normative/strategic questions</strong> so the BDI decomposition has something to work with.</li>
+    <li><strong>Expect a human-in-the-loop editing model:</strong> edit nodes, open a PR, bump the taxonomy version. Contributions go through review queues, not direct writes.</li>
+    <li><strong>Budget for heavy, slow, rich responses.</strong> Debate records and taxonomies can be multiple megabytes. This isn't quick chat.</li>
+    <li><strong>Explore edge states patiently.</strong> Empty sections in anonymous mode don't mean it's broken.</li>
+  </ul>
+
+  <h2>6. Content you can browse</h2>
+  <table>
+    <tr><th>Area</th><th>What it contains</th></tr>
+    <tr><td>Taxonomy (per perspective)</td><td>Structured BDI nodes for accelerationist / safetyist / skeptic</td></tr>
+    <tr><td>Debates archive</td><td>Completed and in-progress multi-perspective debates</td></tr>
+    <tr><td>Cruxes</td><td>Distilled decision points across the debate corpus</td></tr>
+    <tr><td>Organizations</td><td>Profiles of orgs referenced in the discourse</td></tr>
+    <tr><td>Lineage / theory</td><td>Topic lineage and background summaries</td></tr>
+    <tr><td>Community library</td><td>Shared debates and chat threads</td></tr>
+  </table>
+
+  <h2>7. Troubleshooting</h2>
+  <ul>
+    <li><strong>"I only see the sign-in page."</strong> The app renders client-side; use a real browser. For read-only, click "Browse without an account."</li>
+    <li><strong>A section looks empty.</strong> Some areas are sparse in anonymous mode or not yet populated. Try signing in or the community library.</li>
+    <li><strong>A confusing error appears.</strong> Note the exact step and message — that's useful feedback.</li>
+  </ul>
+
+  <div class="callout">
+    Ready to weigh in? Switch to the <strong>Give Feedback</strong> tab. Your answers save automatically in this browser, and you can export them as Markdown or JSON to hand to the tool's creator.
+  </div>
+</section>
+
+<!-- ================= FEEDBACK ================= -->
+<section id="feedback" class="view">
+  <h2>Structured feedback</h2>
+  <p class="hint">The creator wants to know whether this can become <em>adopted infrastructure</em>. Specific, reproducible, honest answers help most. Everything autosaves locally in your browser.</p>
+
+  <form id="fbform">
+    <div class="card">
+      <label>Your name or role <span class="hint" style="display:inline">(optional)</span></label>
+      <input type="text" name="reviewer" placeholder="e.g. Policy analyst, Cloud Migration Team" />
+
+      <label>Date of review</label>
+      <input type="text" name="date" />
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">1. Did it change how you think?</h3>
+      <label>Did the tool change how you think about a real policy question?</label>
+      <div class="hint">The single most important signal.</div>
+      <div class="scale" data-name="changed_thinking">
+        <label><input type="radio" name="changed_thinking" value="Significantly">Significantly</label>
+        <label><input type="radio" name="changed_thinking" value="Somewhat">Somewhat</label>
+        <label><input type="radio" name="changed_thinking" value="Not really">Not really</label>
+        <label><input type="radio" name="changed_thinking" value="N/A">N/A</label>
+      </div>
+      <label>Briefly, what question did you explore and what shifted (or didn't)?</label>
+      <textarea name="changed_detail" placeholder="e.g. I explored 'should frontier training pause?' and realized my disagreement with a colleague was definitional, not empirical."></textarea>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">2. Mental model &amp; onboarding</h3>
+      <label>Did the tool reset your "chatbot" expectation before first use?</label>
+      <div class="scale" data-name="mental_model">
+        <label><input type="radio" name="mental_model" value="Yes, clearly">Yes, clearly</label>
+        <label><input type="radio" name="mental_model" value="Partly">Partly</label>
+        <label><input type="radio" name="mental_model" value="No">No</label>
+      </div>
+      <label>Did the "structural, not veridical" idea land? (Did you avoid reading winning claims as "true"?)</label>
+      <div class="scale" data-name="structural_landed">
+        <label><input type="radio" name="structural_landed" value="Yes">Yes</label>
+        <label><input type="radio" name="structural_landed" value="Unsure">Unsure</label>
+        <label><input type="radio" name="structural_landed" value="No">No</label>
+      </div>
+      <label>Onboarding comments</label>
+      <textarea name="onboarding_detail" placeholder="What was clear or confusing when you first arrived?"></textarea>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">3. Friction points</h3>
+      <p class="hint">Add each concrete issue with the <strong>exact step</strong> where it occurred. 3–5 is ideal.</p>
+      <div id="frictionList"></div>
+      <button type="button" class="action ghost" id="addFriction">+ Add friction point</button>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">4. Trust &amp; provenance</h3>
+      <label>Could you trace <em>why</em> a claim or number scored the way it did?</label>
+      <div class="scale" data-name="provenance">
+        <label><input type="radio" name="provenance" value="Yes">Yes</label>
+        <label><input type="radio" name="provenance" value="Partly">Partly</label>
+        <label><input type="radio" name="provenance" value="Felt like a black box">Felt like a black box</label>
+      </div>
+      <label>Provenance / trust comments</label>
+      <textarea name="provenance_detail" placeholder="Where did you want more explanation of a score or result?"></textarea>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">5. Performance &amp; scale</h3>
+      <label>Where did the UI stall or feel heavy?</label>
+      <textarea name="performance_detail" placeholder="e.g. Loading a large debate took a while on the ___ view."></textarea>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">6. Adoption verdict</h3>
+      <label>Would you adopt this into a real workflow?</label>
+      <div class="scale" data-name="adopt">
+        <label><input type="radio" name="adopt" value="Yes">Yes</label>
+        <label><input type="radio" name="adopt" value="Maybe">Maybe</label>
+        <label><input type="radio" name="adopt" value="Not yet">Not yet</label>
+        <label><input type="radio" name="adopt" value="No">No</label>
+      </div>
+      <label>The single biggest thing blocking adoption</label>
+      <textarea name="blocker" placeholder="If you could fix one thing to make you adopt it, what is it?"></textarea>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">7. Submit</h3>
+      <p class="hint">Send your feedback directly to an endpoint, or export a file to share manually. Submit settings are saved in this browser.</p>
+
+      <label>Destination</label>
+      <select id="submitMode">
+        <option value="community">Rosetta Stone community endpoint (/api/community/submit)</option>
+        <option value="webhook">Custom webhook / form service (JSON POST)</option>
+      </select>
+
+      <div id="webhookRow" style="display:none">
+        <label>Webhook URL <span class="hint" style="display:inline">(Power Automate, Forms connector, Slack, etc.)</span></label>
+        <input type="text" id="webhookUrl" placeholder="https://..." />
+      </div>
+
+      <div id="communityRow">
+        <label>Tool base URL</label>
+        <div class="hint">Defaults to the live app. You must have an active session in this browser (open the tool, choose "Browse without an account" or sign in) for the request to be accepted.</div>
+        <input type="text" id="baseUrl" value="https://taxonomy-editor.yellowbush-aeda037d.eastus.azurecontainerapps.io" />
+      </div>
+
+      <div class="btnrow" style="margin-top:14px">
+        <button type="button" class="action" id="submitBtn">🚀 Submit feedback</button>
+      </div>
+      <div class="saved" id="submitNote"></div>
+    </div>
+
+    <div class="btnrow">
+      <button type="button" class="action" id="exportMd">⬇ Export Markdown</button>
+      <button type="button" class="action ghost" id="exportJson">⬇ Export JSON</button>
+      <button type="button" class="action ghost" id="copyMd">📋 Copy as Markdown</button>
+      <button type="button" class="action ghost" id="clearAll">🗑 Clear</button>
+    </div>
+    <div class="saved" id="savedNote">Not saved yet.</div>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  Assembled from the tool's public framing document and hands-on read-only exploration.
+  Reflects observed behavior, which may change as the tool evolves.
+</footer>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'rosetta_feedback_v1';
+
+  // ---- tabs ----
+  document.querySelectorAll('nav.tabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('nav.tabs button').forEach(function(x){x.classList.remove('active');});
+      document.querySelectorAll('section.view').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      document.getElementById(b.dataset.tab).classList.add('active');
+      window.scrollTo(0,0);
+    });
+  });
+
+  var form = document.getElementById('fbform');
+  var frictionList = document.getElementById('frictionList');
+  var savedNote = document.getElementById('savedNote');
+
+  // default date
+  form.date.value = new Date().toISOString().slice(0,10);
+
+  function addFriction(data){
+    data = data || {step:'', issue:'', severity:'Minor'};
+    var div = document.createElement('div');
+    div.className = 'friction';
+    div.innerHTML =
+      '<button type="button" class="rm" title="Remove">&times;</button>'+
+      '<label>Where it happened (exact step / view)</label>'+
+      '<input type="text" class="f-step" placeholder="e.g. Clicking a crux node in the debate view" />'+
+      '<label>What went wrong</label>'+
+      '<textarea class="f-issue" placeholder="Describe the issue so it can be reproduced."></textarea>'+
+      '<label>Severity</label>'+
+      '<select class="f-sev"><option>Minor</option><option>Moderate</option><option>Blocking</option></select>';
+    div.querySelector('.f-step').value = data.step || '';
+    div.querySelector('.f-issue').value = data.issue || '';
+    div.querySelector('.f-sev').value = data.severity || 'Minor';
+    div.querySelector('.rm').addEventListener('click', function(){ div.remove(); save(); });
+    div.querySelectorAll('input,textarea,select').forEach(function(el){ el.addEventListener('input', save); });
+    frictionList.appendChild(div);
+  }
+  document.getElementById('addFriction').addEventListener('click', function(){ addFriction(); save(); });
+
+  function collect(){
+    var fd = new FormData(form);
+    var obj = {};
+    // simple fields
+    ['reviewer','date','changed_thinking','changed_detail','mental_model','structural_landed',
+     'onboarding_detail','provenance','provenance_detail','performance_detail','adopt','blocker']
+    .forEach(function(k){ obj[k] = fd.get(k) || ''; });
+    // friction
+    obj.friction = [];
+    frictionList.querySelectorAll('.friction').forEach(function(f){
+      var step = f.querySelector('.f-step').value.trim();
+      var issue = f.querySelector('.f-issue').value.trim();
+      var sev = f.querySelector('.f-sev').value;
+      if(step || issue){ obj.friction.push({step:step, issue:issue, severity:sev}); }
+    });
+    return obj;
+  }
+
+  function save(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collect()));
+      var t = new Date().toLocaleTimeString();
+      savedNote.textContent = 'Saved locally at ' + t + ' (this browser only).';
+    }catch(e){ savedNote.textContent = 'Could not save locally: ' + e.message; }
+  }
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw){ addFriction(); return; }
+      var obj = JSON.parse(raw);
+      Object.keys(obj).forEach(function(k){
+        if(k === 'friction') return;
+        if(form.elements[k] === undefined) return;
+        var el = form.elements[k];
+        if(el instanceof RadioNodeList || (el && el.length && el[0] && el[0].type==='radio')){
+          form.querySelectorAll('input[name="'+k+'"]').forEach(function(r){ r.checked = (r.value === obj[k]); });
+        } else if(el){ el.value = obj[k]; }
+      });
+      if(obj.friction && obj.friction.length){ obj.friction.forEach(addFriction); }
+      else { addFriction(); }
+      savedNote.textContent = 'Loaded your saved draft.';
+    }catch(e){ addFriction(); }
+  }
+
+  form.addEventListener('input', save);
+
+  function toMarkdown(o){
+    var L = [];
+    L.push('# AI Rosetta Stone — Feedback');
+    L.push('');
+    L.push('- **Reviewer:** ' + (o.reviewer||'—'));
+    L.push('- **Date:** ' + (o.date||'—'));
+    L.push('');
+    L.push('## 1. Did it change how you think?');
+    L.push('- **Impact:** ' + (o.changed_thinking||'—'));
+    L.push('- **Detail:** ' + (o.changed_detail||'—'));
+    L.push('');
+    L.push('## 2. Mental model & onboarding');
+    L.push('- **Reset chatbot expectation:** ' + (o.mental_model||'—'));
+    L.push('- **"Structural, not veridical" landed:** ' + (o.structural_landed||'—'));
+    L.push('- **Comments:** ' + (o.onboarding_detail||'—'));
+    L.push('');
+    L.push('## 3. Friction points');
+    if(o.friction && o.friction.length){
+      o.friction.forEach(function(f,i){
+        L.push((i+1)+'. **['+f.severity+']** ' + (f.step||'(step?)'));
+        L.push('   - ' + (f.issue||''));
+      });
+    } else { L.push('_None reported._'); }
+    L.push('');
+    L.push('## 4. Trust & provenance');
+    L.push('- **Could trace scoring:** ' + (o.provenance||'—'));
+    L.push('- **Comments:** ' + (o.provenance_detail||'—'));
+    L.push('');
+    L.push('## 5. Performance & scale');
+    L.push('- ' + (o.performance_detail||'—'));
+    L.push('');
+    L.push('## 6. Adoption verdict');
+    L.push('- **Would adopt:** ' + (o.adopt||'—'));
+    L.push('- **Top blocker:** ' + (o.blocker||'—'));
+    L.push('');
+    return L.join('\n');
+  }
+
+  function download(name, text, mime){
+    var blob = new Blob([text], {type: mime});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 100);
+  }
+
+  function stamp(){ return (form.date.value || new Date().toISOString().slice(0,10)); }
+
+  document.getElementById('exportMd').addEventListener('click', function(){
+    download('rosetta-feedback-'+stamp()+'.md', toMarkdown(collect()), 'text/markdown');
+  });
+  document.getElementById('exportJson').addEventListener('click', function(){
+    download('rosetta-feedback-'+stamp()+'.json', JSON.stringify(collect(), null, 2), 'application/json');
+  });
+  document.getElementById('copyMd').addEventListener('click', function(){
+    var md = toMarkdown(collect());
+    if(navigator.clipboard){ navigator.clipboard.writeText(md).then(function(){ savedNote.textContent='Copied Markdown to clipboard.'; }); }
+    else { savedNote.textContent = 'Clipboard not available — use Export instead.'; }
+  });
+  document.getElementById('clearAll').addEventListener('click', function(){
+    if(!confirm('Clear all feedback in this browser?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    form.reset();
+    frictionList.innerHTML='';
+    form.date.value = new Date().toISOString().slice(0,10);
+    addFriction();
+    savedNote.textContent = 'Cleared.';
+  });
+
+  // ---- submit ----
+  var SETTINGS_KEY = 'rosetta_feedback_settings_v1';
+  var submitMode = document.getElementById('submitMode');
+  var webhookRow = document.getElementById('webhookRow');
+  var communityRow = document.getElementById('communityRow');
+  var webhookUrl = document.getElementById('webhookUrl');
+  var baseUrl = document.getElementById('baseUrl');
+  var submitNote = document.getElementById('submitNote');
+
+  function syncSubmitUI(){
+    var isWebhook = submitMode.value === 'webhook';
+    webhookRow.style.display = isWebhook ? 'block' : 'none';
+    communityRow.style.display = isWebhook ? 'none' : 'block';
+  }
+  function saveSettings(){
+    try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+      mode: submitMode.value, webhook: webhookUrl.value, base: baseUrl.value
+    })); }catch(e){}
+  }
+  function loadSettings(){
+    try{
+      var s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+      if(s.mode) submitMode.value = s.mode;
+      if(s.webhook) webhookUrl.value = s.webhook;
+      if(s.base) baseUrl.value = s.base;
+    }catch(e){}
+    syncSubmitUI();
+  }
+  submitMode.addEventListener('change', function(){ syncSubmitUI(); saveSettings(); });
+  webhookUrl.addEventListener('input', saveSettings);
+  baseUrl.addEventListener('input', saveSettings);
+
+  function setSubmitNote(msg, ok){
+    submitNote.textContent = msg;
+    submitNote.style.color = ok === true ? '#15803d' : (ok === false ? '#b91c1c' : 'var(--muted)');
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', async function(){
+    var data = collect();
+    var payloadMd = toMarkdown(data);
+    var btn = this;
+    btn.disabled = true;
+    setSubmitNote('Submitting…', null);
+
+    try{
+      var url, opts;
+      if(submitMode.value === 'webhook'){
+        url = webhookUrl.value.trim();
+        if(!/^https?:\/\//i.test(url)){ throw new Error('Enter a valid webhook URL (https://…).'); }
+        opts = {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ source:'rosetta-stone-feedback', submitted_at:new Date().toISOString(), markdown:payloadMd, feedback:data })
+        };
+      } else {
+        var base = baseUrl.value.trim().replace(/\/+$/,'');
+        if(!/^https?:\/\//i.test(base)){ throw new Error('Enter a valid tool base URL (https://…).'); }
+        url = base + '/api/community/submit';
+        // Contract confirmed from the app bundle: { type, data, note }
+        opts = {
+          method:'POST',
+          credentials:'include',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ type:'feedback', data:data, note:'Tool feedback via feedback app — ' + (data.reviewer||'anonymous') })
+        };
+      }
+
+      var res = await fetch(url, opts);
+      if(res.ok){
+        setSubmitNote('✓ Submitted successfully (HTTP ' + res.status + ').', true);
+      } else {
+        var txt = '';
+        try{ txt = (await res.text()).slice(0,160); }catch(e){}
+        setSubmitNote('Submit returned HTTP ' + res.status + '. ' + txt + '  Your answers are safe — use Export to save a copy.', false);
+      }
+    } catch(err){
+      setSubmitNote('Could not submit: ' + err.message + '. This is often a network/CORS/session issue. Use Export Markdown/JSON and send the file instead.', false);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  loadSettings();
+  load();
+})();
+</script>
+</body>
+</html>

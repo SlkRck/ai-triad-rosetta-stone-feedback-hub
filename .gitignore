@@ -1,0 +1,12 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Local drafts / exports created by the feedback app
+rosetta-feedback-*.md
+rosetta-feedback-*.json
+
+# Node / tooling (not used now, but harmless to ignore)
+node_modules/

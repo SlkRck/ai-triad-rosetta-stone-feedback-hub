@@ -1,0 +1,89 @@
+name: Tool Feedback
+description: Share feedback on the AI Rosetta Stone
+title: "Feedback: <your name/role> — <date>"
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reviewing the AI Rosetta Stone. Answer what's useful — every
+        field is optional. If you came from the feedback hub, your answers are
+        already filled in below.
+
+  - type: input
+    id: reviewer
+    attributes:
+      label: Your name or role
+      placeholder: e.g. Policy analyst, Cloud Migration Team
+    validations:
+      required: false
+
+  - type: dropdown
+    id: changed_thinking
+    attributes:
+      label: Did it change how you think about a real policy question?
+      options:
+        - "Significantly"
+        - "Somewhat"
+        - "Not really"
+        - "N/A"
+    validations:
+      required: false
+
+  - type: textarea
+    id: changed_detail
+    attributes:
+      label: What did you explore, and what shifted (or didn't)?
+      placeholder: The question you brought and what changed in your thinking.
+
+  - type: dropdown
+    id: mental_model
+    attributes:
+      label: Did the tool reset your "chatbot" expectation before first use?
+      options: ["Yes, clearly", "Partly", "No"]
+
+  - type: dropdown
+    id: structural_landed
+    attributes:
+      label: Did "structural, not veridical" land? (Did you avoid reading winning claims as "true"?)
+      options: ["Yes", "Unsure", "No"]
+
+  - type: textarea
+    id: onboarding_detail
+    attributes:
+      label: Onboarding comments
+
+  - type: textarea
+    id: friction
+    attributes:
+      label: Friction points
+      placeholder: |
+        List concrete issues with the exact step where each occurred, e.g.
+        1. [Blocking] Clicking a crux node in the debate view — the panel never loaded.
+
+  - type: dropdown
+    id: provenance
+    attributes:
+      label: Could you trace why a claim or number scored the way it did?
+      options: ["Yes", "Partly", "Felt like a black box"]
+
+  - type: textarea
+    id: provenance_detail
+    attributes:
+      label: Provenance / trust comments
+
+  - type: textarea
+    id: performance_detail
+    attributes:
+      label: Where did the UI stall or feel heavy?
+
+  - type: dropdown
+    id: adopt
+    attributes:
+      label: Would you adopt this into a real workflow?
+      options: ["Yes", "Maybe", "Not yet", "No"]
+
+  - type: textarea
+    id: blocker
+    attributes:
+      label: The single biggest thing blocking adoption
