@@ -48,10 +48,6 @@
   th{background:#f1f0ea;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
   tr:last-child td{border-bottom:0}
   code{background:#eee;padding:1px 5px;border-radius:4px;font-size:13px}
-  figure{margin:16px 0;background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-  figure img{width:100%;display:block;background:#f1f0ea}
-  .ph{display:flex;align-items:center;justify-content:center;height:220px;background:repeating-linear-gradient(45deg,#f4f2ec,#f4f2ec 12px,#eeece4 12px,#eeece4 24px);color:var(--muted);font-size:14px;text-align:center;padding:20px}
-  figcaption{padding:10px 14px;font-size:13px;color:var(--muted);border-top:1px solid var(--border)}
   .cta{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:600;font-size:15px}
   .cta.big{font-size:17px;padding:16px 28px}
   /* form */
@@ -90,7 +86,6 @@
 <nav class="tabs">
   <button data-tab="start" class="active">🏁 Start Here</button>
   <button data-tab="howto">📖 How to Use</button>
-  <button data-tab="tour">🖼️ Visual Tour</button>
   <button data-tab="feedback">📝 Give Feedback</button>
 </nav>
 
@@ -107,7 +102,7 @@
 
   <h3>Your path through this guide</h3>
   <div class="grid3">
-    <div class="step"><span class="n">1</span><br><strong>Learn</strong><br>Read <a href="#" data-goto="howto">How to Use</a> and skim the <a href="#" data-goto="tour">Visual Tour</a> so you know what you're looking at.</div>
+    <div class="step"><span class="n">1</span><br><strong>Learn</strong><br>Read <a href="#" data-goto="howto">How to Use</a>, then in the tool click the <strong>Help</strong> button and <em>Launch Welcome Tour</em> for a guided walkthrough.</div>
     <div class="step"><span class="n">2</span><br><strong>Use</strong><br>Open the live tool and explore in read-only mode, then try a debate.</div>
     <div class="step"><span class="n">3</span><br><strong>Tell us</strong><br>Fill in <a href="#" data-goto="feedback">Give Feedback</a> — it posts to GitHub for the creator.</div>
   </div>
@@ -126,6 +121,10 @@
 <!-- ============ HOW TO ============ -->
 <section id="howto" class="view">
   <h2>How to use it well</h2>
+
+  <div class="callout">
+    <strong>Take the guided tour first.</strong> Inside the tool, click the <strong>Help</strong> button (the ? icon) and choose <em>Launch Welcome Tour</em> for a walkthrough of the main features — browsing the taxonomy, running debates, chatting with perspectives, and setting up an API key.
+  </div>
 
   <h3>1. Getting in</h3>
   <table>
@@ -156,36 +155,6 @@
     <li><strong>Heavy, rich responses:</strong> debates and taxonomies can be several megabytes. Not quick chat.</li>
     <li><strong>Empty sections</strong> in anonymous mode don't mean it's broken.</li>
   </ul>
-</section>
-
-<!-- ============ VISUAL TOUR ============ -->
-<section id="tour" class="view">
-  <h2>Visual tour</h2>
-  <p class="hint">Screenshots go in <code>docs/images/</code>. Until you add them, labeled placeholders show where each one belongs. Filenames the page expects are noted in each caption.</p>
-
-  <figure>
-    <img src="images/01-signin.png" alt="Sign-in screen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="ph" style="display:none">Add <code>images/01-signin.png</code><br>Sign-in screen with "Browse without an account"</div>
-    <figcaption><strong>Sign in / browse anonymously.</strong> Choose "Browse without an account" for read-only access. Expected file: <code>images/01-signin.png</code></figcaption>
-  </figure>
-
-  <figure>
-    <img src="images/02-taxonomy.png" alt="Taxonomy view" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="ph" style="display:none">Add <code>images/02-taxonomy.png</code><br>Three-camp taxonomy view</div>
-    <figcaption><strong>The taxonomy.</strong> BDI nodes for each of the three perspectives. Read this first. Expected file: <code>images/02-taxonomy.png</code></figcaption>
-  </figure>
-
-  <figure>
-    <img src="images/03-debate.png" alt="Debate view" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="ph" style="display:none">Add <code>images/03-debate.png</code><br>A running or completed debate</div>
-    <figcaption><strong>A debate.</strong> Three perspectives argue under formal rules with a procedural moderator. Expected file: <code>images/03-debate.png</code></figcaption>
-  </figure>
-
-  <figure>
-    <img src="images/04-cruxes.png" alt="Cruxes view" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="ph" style="display:none">Add <code>images/04-cruxes.png</code><br>Cruxes / decision points</div>
-    <figcaption><strong>Cruxes.</strong> The distilled points whose resolution would move the most minds — the real payoff. Expected file: <code>images/04-cruxes.png</code></figcaption>
-  </figure>
 </section>
 
 <!-- ============ FEEDBACK ============ -->
@@ -278,7 +247,7 @@
       <button type="button" class="action ghost" id="clearAll">🗑 Clear</button>
     </div>
     <div class="saved" id="savedNote">Not saved yet.</div>
-    <div class="repo-note" id="repoNote">GitHub repo not configured yet — set <code>REPO</code> in this page's script. Until then, "Post to GitHub" falls back to copying your feedback so you can paste it into an issue.</div>
+    <div class="repo-note" id="repoNote">Feedback posts to <code>github.com/SlkRck/ai-triad-rosetta-stone-feedback-hub</code> as a new issue.</div>
   </form>
 </section>
 
@@ -292,9 +261,8 @@
 <script>
 (function(){
   // ====== CONFIG ======
-  // Set this to "owner/repo" once the GitHub repo exists, e.g. "jpsnover/ai-triad-research".
-  var REPO = "SlkRck/ai-triad-rosetta-stone-feedback-hub";   // owner/repo
-  var ISSUE_LABELS = "feedback";  // labels applied to the issue
+  var REPO = "SlkRck/ai-triad-rosetta-stone-feedback-hub";  // "owner/repo" the feedback issues go to
+  var ISSUE_LABELS = "feedback";                            // labels applied to each issue
   // =====================
 
   var STORAGE_KEY = 'rosetta_hub_feedback_v1';
@@ -425,17 +393,13 @@
     var title = 'Feedback: ' + (o.reviewer ? o.reviewer+' — ' : '') + (o.date||stamp()) + verdict;
     var body = toMarkdown(o) + '\n\n---\n_Submitted via the AI Rosetta Stone feedback hub._';
     if(REPO){
+      // Link to the plain new-issue page with the body pre-filled. (GitHub ignores
+      // a pre-filled &body when an issue template is forced, so we don't set &template.)
       var url = 'https://github.com/'+REPO+'/issues/new'
               + '?labels=' + encodeURIComponent(ISSUE_LABELS)
-              + '&template=' + encodeURIComponent('feedback.yml')
               + '&title=' + encodeURIComponent(title)
               + '&body=' + encodeURIComponent(body);
-      // GitHub ignores &body when a template is set; provide a no-template fallback too.
-      var urlNoTemplate = 'https://github.com/'+REPO+'/issues/new'
-              + '?labels=' + encodeURIComponent(ISSUE_LABELS)
-              + '&title=' + encodeURIComponent(title)
-              + '&body=' + encodeURIComponent(body);
-      window.open(urlNoTemplate, '_blank', 'noopener');
+      window.open(url, '_blank', 'noopener');
       savedNote.textContent = 'Opened a pre-filled GitHub issue in a new tab — review and click "Submit new issue".';
     } else {
       if(navigator.clipboard){ navigator.clipboard.writeText(title+'\n\n'+body); }

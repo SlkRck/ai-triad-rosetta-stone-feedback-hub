@@ -9,7 +9,6 @@ the tool's creator.
 ```
 docs/
   index.html            ← the hub (GitHub Pages serves this)
-  images/               ← UI screenshots (drop yours in; placeholders show until then)
   FEEDBACK-SUMMARY.md   ← auto-generated weekly by a workflow (created on first run)
 .github/
   ISSUE_TEMPLATE/
@@ -52,8 +51,9 @@ weekly. The creator gets email by **Watching** the repo (Custom → Issues).
 4. **(Optional) Notifications:** add a repo secret `FEEDBACK_WEBHOOK_URL`
    (Teams/Slack incoming webhook) to get pinged on each new feedback issue.
 5. **Tool creator:** have them *Watch* the repo → Custom → Issues for email.
-6. **Screenshots:** drop `01-signin.png`, `02-taxonomy.png`, `03-debate.png`,
-   `04-cruxes.png` into `docs/images/` (see `docs/images/README.md`).
+
+> The hub points users to the tool's own built-in **Help → Launch Welcome Tour**
+> for a guided walkthrough, so no screenshots are maintained here.
 
 ## Notes & caveats
 
