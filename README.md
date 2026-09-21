@@ -57,10 +57,9 @@ weekly. The creator gets email by **Watching** the repo (Custom → Issues).
 
 ## Notes & caveats
 
-- **Public repo = public feedback.** Issues are world-readable. Ask reviewers not
-  to paste anything internal/sensitive; crop screenshots accordingly. If any
-  feedback must stay private, use a private repo (note: free-tier Pages needs a
-  public repo) or route that path to a private store instead.
+- **Public repo = public feedback.** Issues are world-readable. PLEASE DO NOT
+  paste anything internal/sensitive; crop screenshots accordingly. If any
+  feedback must stay private, send to jsnover@gmail.com.
 - The hub is a single static file with no dependencies; it also works opened
   directly from disk (`file://`) for a quick local preview, though **Post to
   GitHub** needs the `REPO` value set.
