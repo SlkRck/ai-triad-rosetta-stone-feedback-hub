@@ -36,31 +36,11 @@ On a new issue, `label-and-notify.yml` ensures the `feedback` label and can ping
 webhook. `feedback-digest.yml` compiles open feedback into `docs/FEEDBACK-SUMMARY.md`
 weekly. The creator gets email by **Watching** the repo (Custom → Issues).
 
-## Setup (about 10 minutes)
-
-1. **Create a GitHub repo** and copy this folder's contents into it (root of the
-   repo). Push to `main`.
-2. **Enable Pages:** repo *Settings → Pages → Source = "GitHub Actions"*. The
-   `deploy-pages.yml` workflow publishes `docs/` and prints the URL.
-3. **Point the form at the repo:** open `docs/index.html`, find the `CONFIG`
-   block near the top of the `<script>`, and set:
-   ```js
-   var REPO = "SlkRck/ai-triad-rosetta-stone-feedback-hub";
-   ```
-   Commit. Until this is set, **Post to GitHub** falls back to copying the
-   feedback to the clipboard so nothing is lost.
-4. **(Optional) Notifications:** add a repo secret `FEEDBACK_WEBHOOK_URL`
-   (Teams/Slack incoming webhook) to get pinged on each new feedback issue.
-5. **Tool creator:** have them *Watch* the repo → Custom → Issues for email.
-6. **Screenshots:** drop `01-signin.png`, `02-taxonomy.png`, `03-debate.png`,
-   `04-cruxes.png` into `docs/images/` (see `docs/images/README.md`).
-
 ## Notes & caveats
 
-- **Public repo = public feedback.** Issues are world-readable. Ask reviewers not
-  to paste anything internal/sensitive; crop screenshots accordingly. If any
-  feedback must stay private, use a private repo (note: free-tier Pages needs a
-  public repo) or route that path to a private store instead.
+- **Public repo = public feedback.** Issues are world-readable. PLEASE DO NOT
+  paste anything internal/sensitive; crop screenshots accordingly. If any
+  feedback must stay private, send to jsnover@gmail.com.
 - The hub is a single static file with no dependencies; it also works opened
   directly from disk (`file://`) for a quick local preview, though **Post to
   GitHub** needs the `REPO` value set.
