@@ -45,7 +45,7 @@ weekly. The creator gets email by **Watching** the repo (Custom → Issues).
 3. **Point the form at the repo:** open `docs/index.html`, find the `CONFIG`
    block near the top of the `<script>`, and set:
    ```js
-   var REPO = "owner/repo";   // e.g. "jpsnover/ai-triad-research"
+   var REPO = "SlkRck/ai-triad-rosetta-stone-feedback-hub";
    ```
    Commit. Until this is set, **Post to GitHub** falls back to copying the
    feedback to the clipboard so nothing is lost.
